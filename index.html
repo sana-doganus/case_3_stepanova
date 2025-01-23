@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>Любимый фильм</title>
+    <title>Шрек</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="styles.css">
@@ -12,32 +12,55 @@
     <script src="gesture-detector.js"></script>
     <script src="gesture-handler.js"></script>
   </head>
-
-  <body>
-    <a-scene
-      arjs
+<body style="margin: 0; overflow: hidden;">
+    <a-scene arjs
       embedded
       renderer="logarithmicDepthBuffer: true;"
       vr-mode-ui="enabled: false"
       gesture-detector
-      id="scene"
-    >
-      <a-assets>
-        <video id="peach-video" src="peach.mp4"></video>
+      id="scene">
+         <a-assets>
+            <a-asset-item
+              id="shrek-dance"
+              src="shrek.glb"
+            >
+        </a-asset-item>
       </a-assets>
 
-      <a-marker
-        type="pattern"
-        url="peach.patt"
-        raycaster="objects: .clickable"
-        emitevents="true"
-        cursor="fuse: false; rayOrigin: mouse;"
-        id="markerA">
-        <a-video src="peach.mp4" loop="false" rotation="-90 0 0"></a-video>
-      </a-marker>
-
+      <!-- Первый маркер -->
+        <a-marker preset="custom" type='pattern' url='shrek.patt' id="marker1">
+            <a-entity
+              id="shrek-model"
+              gltf-model="#shrek-dance"
+              position="0 0 0"
+              scale="0.5 0.5 0.5"
+              class="clickable"
+              gesture-handler
+              </a-entity>
+        </a-marker>
       
-      <a-entity camera></a-entity>
+        <!-- Второй маркер -->
+        <a-marker preset="custom" type='pattern' url='shrek.patt' id="marker2">
+            <a-video id="video" src="shrek.mp4" width="4" height="3" position="0 0 0" rotation="-90 0 0" autoplay="false"></a-video>
+        </a-marker>
+
+        <a-entity camera></a-entity>
     </a-scene>
-  </body>
+
+    <script>
+        const video = document.getElementById('video');
+        const marker1 = document.getElementById('marker2');
+
+        // Событие, когда маркер найден
+        marker1.addEventListener('markerFound', () => {
+            video.play();
+        });
+
+        // Событие, когда маркер потерян
+        marker1.addEventListener('markerLost', () => {
+            video.pause();
+            video.currentTime = 0; // Сбрасываем время видео на начало
+        });
+    </script>
+</body>
 </html>
