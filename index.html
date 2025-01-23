@@ -29,7 +29,6 @@
               src="shrek.glb"
             >
         </a-asset-item>
-           <video id="shrek-video" src="shrek.mp4"></video>
       </a-assets>
 
       <!-- Первый маркер -->
@@ -54,27 +53,24 @@
             emitevents="true"
             id="marker2"
       >
-        <a-video src="shrek.mp4" loop="false" autoplay="false" rotation="-90 0 0"></a-video>
+        <a-video id="shrek-video" src="shrek.mp4" loop="true" autoplay="false" rotation="-90 0 0"></a-video>
       </a-marker>
 
         <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-        const video = document.getElementById('shrek-video');
-        const marker = document.getElementById('marker2');
+        //const video = document.getElementById('shrek-video');
+        //const marker = document.getElementById('marker2');
 
         // Событие, когда маркер найден
-        marker.addEventListener('markerFound', () => {
-            video.play();
-          console.log("detected video");
-        });
+        document.querySelector('#marker2').addEventListener('markerFound', function() {
+        document.querySelector('#shrek-video').play();
+      });
 
-        // Событие, когда маркер потерян
-        marker.addEventListener('markerLost', () => {
-            video.pause();
-            video.currentTime = 0;
-            console.log("video gone");
+      document.querySelector('#marker2').addEventListener('markerLost', function() {
+        document.querySelector('#shrek-video').pause();
+        document.querySelector('#shrek-video').currentTime = 0;
         });
     </script>
 </body>
