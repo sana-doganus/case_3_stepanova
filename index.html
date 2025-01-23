@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.0.4/aframe.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/2.2.2/aframe-ar.js"></script>
+    <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="gesture-detector.js"></script>
     <script src="gesture-handler.js"></script>
   </head>
@@ -32,7 +32,7 @@
       </a-assets>
 
       <!-- Первый маркер -->
-        <a-marker preset="custom" type='pattern' url='pattern-shrek.patt' id="marker1" raycaster="objects: .clickable" emitevents="true"
+        <a-marker preset="custom" type='pattern' url='shrek-model.patt' id="marker1" raycaster="objects: .clickable" emitevents="true"
         cursor="fuse: false; rayOrigin: mouse;">
             <a-entity
               id="shrek-model"
@@ -47,11 +47,10 @@
         <!-- Второй маркер -->
         <a-marker
             type="pattern"
-            preset='hiro'
-            raycaster="objects: .clickable"
+            preset='custom'
+            url="shrek-trailer"
             emitevents="true"
-            cursor="fuse: false; rayOrigin: mouse;"
-        id="marker2"
+            id="marker2"
       >
         <a-video src="shrek.mp4" loop="false" autoplay="false" rotation="-90 0 0"></a-video>
       </a-marker>
@@ -61,18 +60,18 @@
 
     <script>
         const video = document.getElementById('shrek-video');
-        const marker1 = document.getElementById('marker2');
+        const marker = document.getElementById('marker2');
         video.pause();
         video.currentTime = 0;
 
         // Событие, когда маркер найден
-        marker1.addEventListener('markerFound', () => {
+        marker.addEventListener('markerFound', () => {
             video.play();
           console.log("detected video");
         });
 
         // Событие, когда маркер потерян
-        marker1.addEventListener('markerLost', () => {
+        marker.addEventListener('markerLost', () => {
             video.pause();
             video.currentTime = 0;
             console.log("video gone");
