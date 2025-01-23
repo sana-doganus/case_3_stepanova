@@ -45,9 +45,16 @@
         </a-marker>
       
         <!-- Второй маркер -->
-        <a-marker preset="custom" type='pattern' url='pattern-shrek2.patt' id="marker2" emitevents="true" cursor="fuse: false; rayOrigin: mouse; >
-          <a-video src="shrek.mp4" loop="false" autoplay="false" rotation="-90 0 0"></a-video>
-        </a-marker>
+        <a-marker
+            type="pattern"
+            url="pattern-shrek.patt"
+            raycaster="objects: .clickable"
+            emitevents="true"
+            cursor="fuse: false; rayOrigin: mouse;"
+        id="marker2"
+      >
+        <a-video src="shrek.mp4" loop="false" autoplay="false" rotation="-90 0 0"></a-video>
+      </a-marker>
 
         <a-entity camera></a-entity>
     </a-scene>
