@@ -9,6 +9,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.0.4/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://unpkg.com/aframe-extras.animation-mixer@3.4.0/dist/aframe-extras.animation-mixer.js"></script>
     <script src="gesture-detector.js"></script>
     <script src="gesture-handler.js"></script>
   </head>
@@ -41,7 +42,8 @@
               scale="0.015 0.015 0.015"
               rotation="0 0 0"
               class="clickable"
-              gesture-handler>
+              gesture-handler
+              animation-mixer>
               </a-entity>
         </a-marker>
       
