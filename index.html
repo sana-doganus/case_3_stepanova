@@ -54,12 +54,14 @@
         // Событие, когда маркер найден
         marker1.addEventListener('markerFound', () => {
             video.play();
+          console.log("detected video");
         });
 
         // Событие, когда маркер потерян
         marker1.addEventListener('markerLost', () => {
             video.pause();
             video.currentTime = 0;
+            console.log("video gone");
         });
     </script>
 </body>
